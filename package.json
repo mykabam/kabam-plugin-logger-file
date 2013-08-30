@@ -1,0 +1,26 @@
+{
+  "name": "kabam-plugin-logger-file",
+  "version": "0.0.1",
+  "description": "Kabam plugin to make log in files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vodolaz095/kabam-plugin-logger-file.git"
+  },
+  "keywords": [
+    "kabam",
+    "plugin",
+    "logger"
+  ],
+  "dependencies":{
+    "winston":"*"
+  },
+  "author": "Anatolij Ostroumov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vodolaz095/kabam-plugin-logger-file/issues"
+  }
+}
