@@ -6,9 +6,9 @@ file: {
     }
 });
 
-winston.loggers.add('users',{
+winston.loggers.add('newUsers',{
 file: {
-      filename: process.cwd()+'/logs/users.log'
+      filename: process.cwd()+'/logs/newUsers.log'
     }
 });
 
@@ -26,29 +26,24 @@ file: {
 
 
 var httpLog = winston.loggers.get('http_access'),
-  userLog = winston.loggers.get('user'),
+  newUserLog = winston.loggers.get('newUsers'),
   notifyLog = winston.loggers.get('notifies'),
   errorLog = winston.loggers.get('errors');
 
 exports.name = 'kabamPluginLoggerFile';
 
 exports.listeners = {
-  'http' : function(html){
-/*
-    httpLog.info('info',
-      html.startTime,' - ',
-      html.method,
-      html.uri,
-      html.statusCode,' - ',
-      html.duration, 'ms', '/',
-      html.ip,
-      html.username, ':',
-      html.email
-    );
-*/
-  httpLog.info(html);
-  },
-  'error': function(err){
-    errorLog.error(err);
-  }
+  'http' : httpLog.info, //logging http access
+  'error': errorLog.error, //logging errors
+//logging new users
+  'users:signUp': newUserLog.info,
+  'users:signUpByEmailOnly': newUserLog.info,
+  'users:completeProfile': newUserLog.info,
+  'users:findOneByApiKeyAndVerify': newUserLog.info,
+//logging roles managment - todo - create proper security logging for it
+  'users:revokeRole': function(){},
+  'users:grantRole': function(){},
+//notifications
+  'notify:email' notifyLog.info,
+  'notify:sio' notifyLog.info
 };
