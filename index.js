@@ -1,26 +1,26 @@
 var winston = require('winston');
 
-winston.logger.add('http_access',{
+winston.loggers.add('http_access',{
 file: {
-      filename: process.cwd()+'/http_access.log'
+      filename: process.cwd()+'/logs/http_access.log'
     }
 });
 
-winston.logger.add('users',{
+winston.loggers.add('users',{
 file: {
-      filename: process.cwd()+'/users.log'
+      filename: process.cwd()+'/logs/users.log'
     }
 });
 
-winston.logger.add('notify',{
+winston.loggers.add('notify',{
 file: {
-      filename: process.cwd()+'/notifies.log'
+      filename: process.cwd()+'/logs/notifies.log'
     }
 });
 
-winston.logger.add('errors',{
+winston.loggers.add('errors',{
 file: {
-      filename: process.cwd()+'/errors.log'
+      filename: process.cwd()+'/logs/errors.log'
     }
 });
 
@@ -32,19 +32,23 @@ var httpLog = winston.loggers.get('http_access'),
 
 exports.name = 'kabamPluginLoggerFile';
 
-exports.exports.listeners = {
-  'html' : function(html){
+exports.listeners = {
+  'http' : function(html){
+/*
     httpLog.info('info',
-    html.startTime, '-',
-    html.method,
-    html.uri,
-    html.code, ' - ',
-    html.duration, 'ms', '/',
-    html.ip,
-    html.username, ':'
-    html.email);
+      html.startTime,' - ',
+      html.method,
+      html.uri,
+      html.statusCode,' - ',
+      html.duration, 'ms', '/',
+      html.ip,
+      html.username, ':',
+      html.email
+    );
+*/
+  httpLog.info(html);
   },
   'error': function(err){
-    errorLog.error(err));
+    errorLog.error(err);
   }
 };
