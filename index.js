@@ -12,7 +12,7 @@ file: {
     }
 });
 
-winston.loggers.add('notify',{
+winston.loggers.add('notifies',{
 file: {
       filename: process.cwd()+'/logs/notifies.log'
     }
@@ -44,6 +44,6 @@ exports.listeners = {
   'users:revokeRole': function(){},
   'users:grantRole': function(){},
 //notifications
-  'notify:email' notifyLog.info,
-  'notify:sio' notifyLog.info
+  'notify:email': notifyLog.info,
+  'notify:sio': notifyLog.info
 };
